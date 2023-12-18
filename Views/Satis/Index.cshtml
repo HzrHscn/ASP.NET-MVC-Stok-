@@ -1,0 +1,53 @@
+﻿@using MvcStok.Models.Entity
+@using PagedList
+@using PagedList.Mvc
+@model PagedList.IPagedList<TBLSATISLAR>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<table class="table table-bordered">
+    <tr>
+        <th>SATIŞ ID</th>
+        <th>ÜRÜN ADI</th>
+        <th>MÜŞTERİ ADI</th>
+        <th>SATILAN ADET</th>
+        <th>FİYAT</th>
+        @*<th>SİL</th>*@
+        <th>FATURA</th>
+    </tr>
+    <tbody>
+        @foreach (var sts in Model)
+        {
+            <tr>
+                <td>@sts.SATISID</td>
+                <td>@sts.TBLURUNLER.URUNAD</td>
+                <td>@sts.TBLMUSTERILER.MUSTERIAD</td>
+                <td>@sts.ADET</td>
+                <td>@sts.FIYAT</td>
+                @*<td><a href="/URUN/SIL/@urn.URUNID" class="btn btn-danger">SİL</a></td> ALERTSİZ SİL*@
+                @*<td>@Html.ActionLink("SIL BUTONU", "SIL", new { id = sts.URUNID }, new { @class = "btn btn-danger", onclick = "return confirm('Gerçekten Silmek İstiyor musunuz?')" })</td>*@
+                <td><a href="/Satis/SatisGetir/@sts.SATISID" class="btn btn-warning">FATURALA</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+@Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("Index", new { sayfa }))
+
+<a href="/Satis/SatisYap/" class="btn btn-primary">YENİ SATIŞ YAP</a>

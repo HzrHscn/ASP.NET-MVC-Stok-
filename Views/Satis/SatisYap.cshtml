@@ -1,0 +1,47 @@
+﻿@model MvcStok.Models.Entity.TBLSATISLAR
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+@{
+    ViewBag.Title = "SatisYap";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<form class="form-group" method="post">
+    <div>
+        <label>Ürün Seçiniz</label>
+        @Html.DropDownListFor(m => m.TBLURUNLER.URUNID, (List<SelectListItem>)ViewBag.dgr, new { @class = "form-control" })
+    </div>
+    <div>
+        <label>Müşteri Id'</label>
+        <input type="text" class="form-control" name="MUSTERI" required="" />
+    </div>
+    <div>
+        <label>Ürün Fiyat</label>
+        <input type="text" class="form-control" name="FIYAT" required="" />
+    </div>
+    <div>
+        <label>Ürün Stok</label>
+        <input type="text" class="form-control" name="ADET" required="" />
+    </div>
+    <div style="margin-top:15px">
+        <button class="btn btn-success" id="btn1">SATIŞ YAP</button>
+    </div>
+    <script>
+        $('#btn1').click(function () {
+            alert('Satış işlemi tamamlandı...');
+        });
+    </script>
+</form>

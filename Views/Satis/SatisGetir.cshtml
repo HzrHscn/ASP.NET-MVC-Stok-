@@ -1,0 +1,29 @@
+﻿@model MvcStok.Models.Entity.TBLSATISLAR
+
+@{
+    ViewBag.Title = "SatisGetir";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>Fatura Detayı</h2>
+<table class="table">
+    <tr>
+        <th>Faturalama Tarihi</th>
+        <th>Satış ID</th>
+        <th>Ürün Adı</th>
+        <th>Müşteri Adı</th>
+        <th>Adet</th>
+        <th>Fiyat</th>
+        <th>Toplam Tutar</th>
+    </tr>
+    <tr>
+        <td>@DateTime.Now</td>
+        <td>@Model.SATISID</td>
+        <td>@Model.URUN</td>
+        <td>@Model.MUSTERI</td>
+        <td>@Model.ADET</td>
+        <td>@Model.FIYAT</td>
+        <td>@(Model.ADET * Model.FIYAT)</td>
+    </tr>
+</table>
+
